@@ -2,6 +2,8 @@
 import { Injectable } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Injectable()
 export class CoffeesService {
@@ -23,11 +25,11 @@ export class CoffeesService {
     }
     return coffee;
   }
-  create(createCoffeeDto: any) {
-    this.coffees.push(createCoffeeDto);
+  create(createCoffeeDto: CreateCoffeeDto) {
+    this.coffees.push({ ...createCoffeeDto, id: this.coffees.length + 1 });
   }
 
-  update(id: string, updateCoffeeDto: any) {
+  update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
     const existingCoffee = this.findOne(id);
     if (existingCoffee) {
       // update the existing entity
