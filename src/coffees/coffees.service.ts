@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
+import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
 
 @Injectable()
 export class CoffeesService {
@@ -16,12 +17,16 @@ export class CoffeesService {
     return this.coffees;
   }
   findOne(id: string) {
-    return this.coffees.find((item) => item.id === +id);
+    const coffee = this.coffees.find((item) => item.id === +id);
+    if (!coffee) {
+      throw new HttpErrorByCode[404]('Coffee not found');
+    }
+    return coffee;
   }
   create(createCoffeeDto: any) {
     this.coffees.push(createCoffeeDto);
   }
-  
+
   update(id: string, updateCoffeeDto: any) {
     const existingCoffee = this.findOne(id);
     if (existingCoffee) {
