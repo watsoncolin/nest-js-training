@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { COFFEE_BRANDS } from './coffee.constants';
+import { Connection } from 'typeorm';
 
 @Injectable()
 export class CoffeeBrandsFactory {
@@ -20,9 +21,10 @@ export class CoffeeBrandsFactory {
     CoffeeBrandsFactory,
     {
       provide: COFFEE_BRANDS,
-      useFactory: (brandsFactory: CoffeeBrandsFactory) =>
-        brandsFactory.create(),
-      inject: [CoffeeBrandsFactory],
+      useFactory: async (): Promise<string[]> => {
+        const coffeeBrands = await Promise.resolve(['buddy brew', 'nescafe']);
+        return coffeeBrands;
+      },
     },
   ],
   controllers: [CoffeesController],
