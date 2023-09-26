@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { COFFEE_BRANDS } from './coffee.constants';
-import { Connection } from 'typeorm';
 
 @Injectable()
 export class CoffeeBrandsFactory {
