@@ -1,4 +1,4 @@
-import { Injectable, Module } from '@nestjs/common';
+import { Injectable, Module, Scope } from '@nestjs/common';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -24,6 +24,7 @@ export class CoffeeBrandsFactory {
         const coffeeBrands = await Promise.resolve(['buddy brew', 'nescafe']);
         return coffeeBrands;
       },
+      scope: Scope.TRANSIENT,
     },
   ],
   controllers: [CoffeesController],
