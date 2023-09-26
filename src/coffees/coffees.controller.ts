@@ -4,9 +4,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
-  Inject,
   Param,
   Patch,
   Post,
@@ -16,7 +13,6 @@ import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
-import { REQUEST } from '@nestjs/core';
 
 @Controller('coffees')
 export class CoffeesController {
