@@ -23,6 +23,7 @@ export class CoffeesService {
     private readonly configService: ConfigService,
   ) {
     console.log(this.configService.get('database.host'));
+    console.log(this.configService.get('coffees.foo'));
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
