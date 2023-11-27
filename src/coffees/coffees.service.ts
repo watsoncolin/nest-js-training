@@ -45,7 +45,7 @@ export class CoffeesService {
       },
     });
     if (!coffee) {
-      throw new NotFoundException[404](`Coffee #${id} not found`);
+      throw new NotFoundException(`Coffee #${id} not found`);
     }
     return coffee;
   }
